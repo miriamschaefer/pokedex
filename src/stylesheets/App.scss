@@ -14,6 +14,8 @@
 
   &__container {
     border: 2px black dashed;
+    box-shadow: 16px 15px 5px -9px rgba(0, 0, 0, 0.52);
+    background-color: white;
     width: 800px;
     display: flex;
     flex-wrap: wrap;
@@ -22,11 +24,17 @@
     padding-bottom: 20px;
 
     &__pokemon {
+      background-color: rgb(214, 216, 214);
       margin: 15px 15px 15px 15px;
       width: 200px;
       height: 320px;
       border: 2px dotted black;
       text-align: center;
+
+      &__name {
+        margin-top: 10px;
+        margin-bottom: 3px;
+      }
 
       &__evolution__title {
         font-size: 20px;
@@ -50,6 +58,11 @@
           display: flex;
           justify-content: space-evenly;
           margin-bottom: 7px;
+
+          & li {
+            border: 2px dotted black;
+            padding: 3px;
+          }
         }
       }
     }
