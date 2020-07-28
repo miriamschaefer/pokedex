@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Pokemon extends React.Component {
   render() {
@@ -27,7 +28,12 @@ class Pokemon extends React.Component {
 }
 
 Pokemon.defaultProps = {
-  evolution: 'No evoluciona',
+  evolution: 'No data',
+};
+
+Pokemon.propTypes = {
+  url: PropTypes.string,
+  name: PropTypes.string,
 };
 
 export default Pokemon;
