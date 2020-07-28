@@ -1,6 +1,7 @@
 import React from 'react';
 import '../stylesheets/App.scss';
 import PokeList from './PokeList';
+import Header from './Header';
 import pokemonsFromApi from '../data/pokemons.json';
 
 class App extends React.Component {
@@ -13,7 +14,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1 className="App__title">Pokedex</h1>
+        <Header />
 
         <PokeList pokemons={this.state.pokemons} />
       </div>
