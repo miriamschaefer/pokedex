@@ -8,16 +8,20 @@ class Pokemon extends React.Component {
     });
 
     return (
-      <div>
-        <h2>{this.props.name}</h2>
-        <img src={this.props.url} />
-        <p>
+      <li className="App__container__pokemon">
+        <h2 className="App__container__pokemon__name">{this.props.name}</h2>
+        <img src={this.props.url} alt={this.props.name} />
+        <p className="App__container__pokemon__evolution__title">Evolution:</p>
+        <p className="App__container__pokemon__evolution__pokemons">
           {this.props.evolution === null
             ? 'Primera evolución'
             : this.props.evolution}
         </p>
-        <ul>{types}</ul>
-      </div>
+        <div className="App__container__pokemon__types">
+          <p className="App__container__pokemon__types__title">Types:</p>
+          <ul className="App__container__pokemon__types__content">{types}</ul>
+        </div>
+      </li>
     );
   }
 }

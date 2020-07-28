@@ -13,6 +13,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <h1 className="App__title">Pokedex</h1>
+
         <PokeList pokemons={this.state.pokemons} />
       </div>
     );
