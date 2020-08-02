@@ -1,3 +1,7 @@
+body {
+  background-color: rgb(150, 160, 150);
+}
+
 .App {
   background-color: rgb(150, 160, 150);
   margin: auto;
@@ -30,6 +34,7 @@
       height: 320px;
       border: 2px dotted black;
       text-align: center;
+      text-transform: capitalize;
 
       &__name {
         margin-top: 10px;
@@ -49,7 +54,6 @@
         font-size: 20px;
 
         &__title {
-          font-size: 20px;
           margin-top: 0;
           margin-bottom: 10px;
         }
@@ -67,4 +71,8 @@
       }
     }
   }
+}
+
+.fav {
+  background-color: rgb(150, 160, 150);
 }

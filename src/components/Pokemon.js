@@ -2,6 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Pokemon extends React.Component {
+  constructor(props) {
+    super(props);
+    this.favHandlerChild = this.favHandlerChild.bind(this);
+  }
+
+  favHandlerChild(ev) {
+    this.props.favHandler(ev);
+  }
+
   render() {
     const pokemonTypes = this.props.types;
     const types = pokemonTypes.map((type, index) => {
@@ -9,13 +18,19 @@ class Pokemon extends React.Component {
     });
 
     return (
-      <li className="App__container__pokemon">
+      <li
+        className={`App__container__pokemon ${
+          this.props.favPokemons.includes(this.props.id.toString()) ? 'fav' : ''
+        }`}
+        onClick={this.favHandlerChild}
+        id={this.props.id}
+      >
         <h2 className="App__container__pokemon__name">{this.props.name}</h2>
         <img src={this.props.url} alt={this.props.name} />
         <p className="App__container__pokemon__evolution__title">Evolution:</p>
         <p className="App__container__pokemon__evolution__pokemons">
           {this.props.evolution === null
-            ? 'Primera evolución'
+            ? 'First evolution'
             : this.props.evolution}
         </p>
         <div className="App__container__pokemon__types">
@@ -34,6 +49,8 @@ Pokemon.defaultProps = {
 Pokemon.propTypes = {
   url: PropTypes.string,
   name: PropTypes.string,
+  types: PropTypes.array,
+  evolution: PropTypes.string,
 };
 
 export default Pokemon;
