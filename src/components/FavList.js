@@ -1,18 +1,16 @@
 import React from 'react';
-import FavPokemon from './Pokemon';
 
 class FavList extends React.Component {
   render() {
-    const favedPokemons = this.props.favPokemons.map((pokemon, index) => {
-      console.log(pokemon);
-
-      return <li key={index}>{pokemon}</li>;
+    console.log(this.props.favPokemons);
+    const favListPokemons = this.props.favPokemons.map((pokemon, index) => {
+      return <li key={index}>{pokemon.name}</li>;
     });
 
     return (
       <div>
         <h2>My fav Pokemon</h2>
-        <ul className="App__container__favs">{favedPokemons}</ul>
+        <ul className="App__container__favs">{favListPokemons}</ul>
       </div>
     );
   }

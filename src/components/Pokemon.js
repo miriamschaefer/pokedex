@@ -8,7 +8,7 @@ class Pokemon extends React.Component {
   }
 
   favHandlerChild(ev) {
-    this.props.favHandler(ev);
+    this.props.favHandler(ev.currentTarget.id.toString());
   }
 
   render() {
