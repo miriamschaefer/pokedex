@@ -1,20 +1,29 @@
-// import React from 'react';
+import React, { Component } from 'react';
 
-// class Search extends React.Component {
+class Search extends Component {
+  constructor(props) {
+    super(props);
 
-//     constructor(props) {
-//         super(props);
-//     }
+    this.searchHandlerChild = this.searchHandlerChild.bind(this);
+  }
 
-//     const getInputValue = (ev) => {
-//         props.handleInput(ev.target.value);
-//     }
-//   render() {
-//     return (
-//     <div>
-//         <input onChange={getInputValue} type="text" name="search">
-//     </div>)
-//   }
-// }
+  searchHandlerChild(ev) {
+    this.props.searchHandler(ev);
+  }
 
-// export default Search;
+  render() {
+    return (
+      <form>
+        <label htmlFor="search">Search for a pokemon </label>
+        <input
+          type="text"
+          id="search"
+          placeholder="Search your pokemon"
+          onChange={this.searchHandlerChild}
+        />
+      </form>
+    );
+  }
+}
+
+export default Search;
