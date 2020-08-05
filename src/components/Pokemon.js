@@ -8,7 +8,7 @@ class Pokemon extends React.Component {
   }
 
   favHandlerChild(ev) {
-    this.props.favHandler(ev.currentTarget.id.toString());
+    this.props.favHandler(ev.currentTarget.id);
   }
 
   render() {
@@ -18,6 +18,7 @@ class Pokemon extends React.Component {
     });
 
     return (
+      //not really sure about why I have to stringify this id..., but it doesn't work if I remove it.
       <li
         className={`App__container__pokemon ${
           this.props.favPokemons.includes(this.props.id.toString()) ? 'fav' : ''

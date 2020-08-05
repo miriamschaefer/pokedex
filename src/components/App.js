@@ -20,7 +20,6 @@ class App extends React.Component {
     this.isTypeHandler = this.isTypeHandler.bind(this);
   }
 
-  //probar a meter aquí el click para el unfav de la lista de favoritos filtrando por clase? por id de nuevo?
   favHandler(clickedId) {
     const favPokemons = this.state.favPokemons;
 
@@ -34,7 +33,11 @@ class App extends React.Component {
       favPokemons.push(clickedId);
       this.setState({ favPokemons: favPokemons });
     }
+
+    localStorage.setItem('favPokemons', JSON.stringify(this.state.favPokemons));
   }
+
+  //SEARCH AND FILTERS
 
   searchHandler(ev) {
     const searchInput = ev.currentTarget.value.toLowerCase();
@@ -43,6 +46,30 @@ class App extends React.Component {
 
   isTypeHandler(data) {
     this.setState({ [data.key]: data.value });
+  }
+
+  //LOCAL STORAGE
+
+  // componentDidUpdate() {
+
+  // }
+
+  componentDidMount() {
+    // for all items in state
+    for (let id in this.state) {
+      // if the id exists in localStorage - hasOwnProperty returns a boolean which specifies if the object has the property I'm looking for.
+      if (localStorage.hasOwnProperty(id)) {
+        // get the id's value from localStorage
+        let value = localStorage.getItem(id);
+        // parse the localStorage string and setState
+        if ((value = JSON.parse(value))) {
+          this.setState({ [id]: value });
+        } else {
+          // handle empty string
+          this.setState({ [id]: value });
+        }
+      }
+    }
   }
 
   render() {
@@ -55,7 +82,7 @@ class App extends React.Component {
     const searchText = this.state.searchText;
     const pokemonsSearch = this.state.pokemons;
 
-    //como filtrar dos características del objeto en la búsqueda
+    //FIXME, waaaaay to long.
 
     const filteredPokemons = this.state.pokemons
       .filter((pokemon) => {
@@ -95,7 +122,7 @@ class App extends React.Component {
         }
       })
 
-      //preguntar a maría por qué me marca el checkbox de water también junto, y por qué no me sale con un ternario que ponga pokemon.types === 'fire', ¿cómo se podría filtrar todas en un método?
+      //FIXME. Want to add just one filter for all checkboxes here.
 
       .filter((pokemon) =>
         this.state.isType === true ? pokemon.types.includes('fire') : true
