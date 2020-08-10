@@ -3,7 +3,9 @@ import '../stylesheets/App.scss';
 import PokeList from './PokeList';
 import Header from './Header';
 import Search from './Search';
+import { Route, Switch } from 'react-router-dom';
 import pokemonsFromApi from '../data/pokemons.json';
+import Pokemon from './Pokemon';
 
 class App extends React.Component {
   constructor(props) {
@@ -33,8 +35,6 @@ class App extends React.Component {
       favPokemons.push(clickedId);
       this.setState({ favPokemons: favPokemons });
     }
-
-    localStorage.setItem('favPokemons', JSON.stringify(this.state.favPokemons));
   }
 
   //SEARCH AND FILTERS
@@ -48,11 +48,13 @@ class App extends React.Component {
     this.setState({ [data.key]: data.value });
   }
 
-  //LOCAL STORAGE
+  componentDidUpdate() {
+    console.log(this.state.favPokemons);
+    const pokeFavs = this.state.favPokemons;
+    localStorage.setItem('favPokemons', JSON.stringify(pokeFavs));
+  }
 
-  // componentDidUpdate() {
-
-  // }
+  //FIXME try to refactor this, doesn't make sense you have to use the hasOwnProperty
 
   componentDidMount() {
     // for all items in state
@@ -70,6 +72,14 @@ class App extends React.Component {
         }
       }
     }
+  }
+
+  renderPokemon(props) {
+    const pokemonId = props.match.params.id;
+    const pokemon = this.state.data.find(
+      (pokemon) => pokemon.id === parseInt(pokemonId)
+    );
+    return <Pokemon pokemon={pokemon} />;
   }
 
   render() {
@@ -166,6 +176,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header />
+
         <Search
           searchHandler={this.searchHandler}
           isType={this.state.isType}
